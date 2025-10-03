@@ -1,0 +1,22 @@
+.underline-one {
+  position: relative;
+  display: inline-block; 
+  text-decoration: none;
+  cursor: pointer;
+  color: #e7e7e7; 
+}
+
+.underline-one::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #F7BB03, #FFE34D) ;
+  transition: width 0.5s ease;
+}
+
+.underline-one:hover::after {
+  width: 100%;
+}

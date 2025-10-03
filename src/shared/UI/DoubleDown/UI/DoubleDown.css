@@ -1,0 +1,21 @@
+@keyframes twoPecks {
+  /* Фаза "клевков" (первая секунда) */
+  0%, 16%, 33.3%, 100% {
+    transform: translateY(0);
+    animation-timing-function: ease-in-out;
+  }
+  8% {
+    transform: translateY(6px); /* Первый клевок */
+    animation-timing-function: ease-in;
+  }
+  24% {
+    transform: translateY(6px); /* Второй клевок */
+    animation-timing-function: ease-in;
+  }
+  /* Фаза паузы (остальные 2 секунды) неявно происходит 
+     между 33.3% и 100%, когда элемент находится в положении translateY(0) */
+}
+
+.animate-peck {
+  animation: twoPecks 3s infinite;
+}
