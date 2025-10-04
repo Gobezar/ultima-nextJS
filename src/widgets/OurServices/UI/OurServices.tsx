@@ -53,7 +53,7 @@ const ourServiceCards: IServiceCard[] = [
 const OurServices = () => {
   return (
     <div
-      className="ourServicesContainer bg-[#171717] pt-[91px]"
+      className="ourServicesContainer bg-[#171717] pt-[46px]"
       style={{
         backgroundImage: `url(${serviceBg.src})`,
         backgroundPosition: "top center",
@@ -63,8 +63,9 @@ const OurServices = () => {
       <HeaderBlock text="Наши услуги" />
       <div
         className="grid grid-cols-3 gap-[50px] mt-[87px] w-fit mx-auto
-        tablet:grid-cols-2 tablet:gap-[25px]
-        mobile:grid-cols-1 mobile:px-[15px] mobile:gap-[15px]
+        laptop:mt-[65px]
+        tablet:grid-cols-2 tablet:gap-[25px] tablet:mt-[50px]
+        mobile:grid-cols-1 mobile:px-[15px] mobile:gap-[15px] mobile:mt-[40px]
       "
       >
         {ourServiceCards.map((card) => (
