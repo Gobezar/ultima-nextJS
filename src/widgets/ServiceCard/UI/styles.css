@@ -1,0 +1,26 @@
+@media (max-width: 743px) {
+  .wrapper-1, .wrapper-2, .wrapper-3, .wrapper-4, .wrapper-5, .wrapper-6 {
+    background-size: cover;
+    background-position: center;
+    box-shadow: 10px 10px 100px 0px #28282824;
+
+  }
+  .wrapper-1 {
+    background-image: url('../../../../public/service_1.jpg');
+  }
+  .wrapper-2 {
+    background-image: url('../../../../public/service_2.jpg');
+  }
+  .wrapper-3 {
+    background-image: url('../../../../public/service_3.jpg');
+  }
+  .wrapper-4 {
+    background-image: url('../../../../public/service_4.jpg');
+  }
+  .wrapper-5 {
+    background-image: url('../../../../public/service_5.jpg');
+  }
+  .wrapper-6 {
+    background-image: url('../../../../public/service_6.jpg');
+  }
+}

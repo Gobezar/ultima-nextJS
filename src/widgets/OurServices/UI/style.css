@@ -1,0 +1,5 @@
+@media (max-width: 743px) {
+    .ourServicesContainer {
+        background-image: none !important;
+    }
+}
