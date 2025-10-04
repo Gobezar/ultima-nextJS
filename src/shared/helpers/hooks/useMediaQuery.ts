@@ -30,7 +30,7 @@ export function useMediaQuery() {
     };
   }, [resizeCallback]);
 
-  //@ts-ignore
+// @ts-expect-error: key might not exist in DefaultSizeMap
   const breakpointSize = breakPoint ? DefaultSizeMap[breakPoint] : undefined;
   const breakpointValue = breakpointSize
     ? parseInt(breakpointSize)
