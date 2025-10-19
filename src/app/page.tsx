@@ -4,6 +4,7 @@ import { Button } from "@/shared";
 import "./globals.css";
 import DoubleDown from "@/shared/UI/DoubleDown/UI/DoubleDown";
 import MainTitleLogo from "@/shared/UI/MainTitleLogo/UI/MainTitleLogo";
+import Advantages from "@/widgets/Advantages/UI/Advantages";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
         <DoubleDown className="absolute bottom-[25px] left-1/2 -translate-x-1/2 bounce-click-hover mobile:hidden" />
       </div>
       <OurServices />
+      <Advantages/>
       <Navbar />
     </>
   );

@@ -54,11 +54,11 @@ const OurServices = () => {
   return (
     <div
       className="ourServicesContainer bg-[#171717] pt-[46px]"
-      style={{
-        backgroundImage: `url(${serviceBg.src})`,
-        backgroundPosition: "top center",
-        backgroundRepeat: 'no-repeat'
-      }}
+      // style={{
+      //   backgroundImage: `url(${serviceBg.src})`,
+      //   backgroundPosition: "top center",
+      //   backgroundRepeat: 'no-repeat'
+      // }}
     >
       <HeaderBlock text="Наши услуги" />
       <div
