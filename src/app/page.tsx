@@ -5,14 +5,17 @@ import "./globals.css";
 import DoubleDown from "@/shared/UI/DoubleDown/UI/DoubleDown";
 import MainTitleLogo from "@/shared/UI/MainTitleLogo/UI/MainTitleLogo";
 import Advantages from "@/widgets/Advantages/UI/Advantages";
+import Price from "@/widgets/Price/UI/Price";
+import Portfolio from "@/widgets/Portfolio/UI/Portfolio";
 
 export default function Home() {
   return (
     <>
-
-      <div className="relative min-h-screen bg-cover bg-top bg-[url('/mainBg.jpg')]
+      <div
+        className="relative min-h-screen bg-cover bg-top bg-[url('/mainBg.jpg')]
         tablet:bg-[100%] mobile:bg-left
-      ">
+      "
+      >
         <div className="absolute bottom-0 left-0 right-0 h-70 bg-gradient-to-b from-transparent to-[#171717]" />
         <div
           className="flex items-center gap-[499px] absolute bottom-[90px] left-1/2 -translate-x-1/2 
@@ -31,7 +34,9 @@ export default function Home() {
         <DoubleDown className="absolute bottom-[25px] left-1/2 -translate-x-1/2 bounce-click-hover mobile:hidden" />
       </div>
       <OurServices />
-      <Advantages/>
+      <Price />
+      <Advantages />
+      <Portfolio/>
       <Navbar />
     </>
   );

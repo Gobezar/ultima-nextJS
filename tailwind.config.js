@@ -1,7 +1,11 @@
 // tailwind.config.js
 module.exports = {
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+      montseratt: ['var(--montseratt)', 'sans-serif'],
+    },
+    },
     screens: {
 
       // ширина >= 1441 и высота >= 960

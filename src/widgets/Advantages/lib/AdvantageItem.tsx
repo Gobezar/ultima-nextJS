@@ -35,7 +35,7 @@ const AdvantageItem = ({ item }: { item: IAdvantageItem }) => {
       </div>
       <div
         className={classNames(
-          "text-center font-normal text-[17px] leading-[24px] text-[#FFFFFF] z-1 laptop:text-[15px] mobile::text-[13px] ",
+          "text-center font-normal text-[17px] leading-[24px] text-[#FFFFFF] z-1 laptop:text-[15px] mobile:text-[13px] ",
           (item.id === 1 || item.id === 3) && "mt-[24px] mobile:mt-[0px]"
         )}
       >

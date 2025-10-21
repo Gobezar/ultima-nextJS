@@ -31,7 +31,7 @@ const items = [
 
 const Advantages = () => {
   return (
-    <div className="ourServicesContainer bg-[#171717] pt-[46px]">
+    <div className="bg-[#171717] pt-[130px]">
       <HeaderBlock text="Преимущества" />
       <div
         className="flex mt-[87px] items-center justify-center gap-[160px] w-full mx-auto bg-[#2D2D2D] h-fit pt-[42px] pb-[66px]

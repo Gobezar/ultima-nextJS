@@ -53,7 +53,7 @@ const ourServiceCards: IServiceCard[] = [
 const OurServices = () => {
   return (
     <div
-      className="ourServicesContainer bg-[#171717] pt-[46px]"
+      className="ourServicesContainer bg-[#171717] pt-[130px]"
       // style={{
       //   backgroundImage: `url(${serviceBg.src})`,
       //   backgroundPosition: "top center",

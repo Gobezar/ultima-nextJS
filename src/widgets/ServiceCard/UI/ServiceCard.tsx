@@ -51,7 +51,7 @@ const ServiceCard = ({ item }: { item: IServiceCard }) => {
             {item.title}
           </h4>
         </div>
-        <div className="w-[87px] h-[2px] bg-[#F7BB03] mb-[24px] laptop:mb-[18px] mobile:mb-[10px]"></div>
+        <div className="w-[87px] h-[2px] bg-[#D1933C] mb-[24px] laptop:mb-[18px] mobile:mb-[10px]"></div>
         <div>
           <p
             className="font-normal text-[17px] laptop:text-[15px] mobile:text-[13px] leading-[24px] text-[#FFFFFFD6]
