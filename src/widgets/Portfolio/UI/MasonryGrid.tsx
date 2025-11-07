@@ -65,7 +65,7 @@ const MasonryGrid = React.memo(
                   backgroundImage: `url(${item.coverImage})`,
                 }}
               >
-                <div className={`backdrop-blur-[20px] rounded-xl w-full px-[10px] ${item.size === 'small' ? 'py-[10px]' : 'py-[25px]'}`}>
+                <div className={`backdrop-blur-[20px]  w-full px-[10px] ${item.size === 'small' ? 'py-[10px]' : 'py-[25px]'}`}>
                 <p className="font-semibold text-[17px] laptop:text-[15px] mobile:text-[13px]">{item.car}</p>
                 <p className="text-[17px] laptop:text-[15px] mobile:text-[13px] text-gray-200">{item.title}</p>
                 </div>
