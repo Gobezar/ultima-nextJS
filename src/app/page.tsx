@@ -7,6 +7,7 @@ import MainTitleLogo from "@/shared/UI/MainTitleLogo/UI/MainTitleLogo";
 import Advantages from "@/widgets/Advantages/UI/Advantages";
 import Price from "@/widgets/Price/UI/Price";
 import Portfolio from "@/widgets/Portfolio/UI/Portfolio";
+import Reviews from "@/widgets/Reviews/UI/Reviews";
 
 export default function Home() {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
       <Price />
       <Advantages />
       <Portfolio/>
+      <Reviews/>
       <Navbar />
     </>
   );
