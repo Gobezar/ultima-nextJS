@@ -21,7 +21,7 @@ export default function ReviewsList({
 
   if (loading) return <div>Загрузка...</div>;
 
-  if (!reviews.length) return <div>Отзывов пока нет</div>;
+  if (!reviews.length) return <div className="text-[#E7E7E7] text-[17px] laptop:text-[15px] mobile:text-[13px]">Отзывов пока нет</div>;
 
   return (
     <Swiper
