@@ -13,18 +13,18 @@ const Reviews = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchReviews = async () => {
-      try {
-        const res = await axios.get("http://localhost:4000/reviews", {
-          params: { limit: 20 },
-        });
-        setReviews(res.data.data || res.data); // поддержка обеих форматов ответа
-      } catch (err) {
-        console.error("Ошибка при получении отзывов:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
+    try {
+      const res = await axios.get("http://localhost:4000/reviews", {
+        params: { limit: 20 },
+      });
+      alert(JSON.stringify(res.data.data || res.data, null, 2));
+      setReviews(res.data.data || res.data); // поддержка обеих форматов ответа
+    } catch (err) {
+      console.error("Ошибка при получении отзывов:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     fetchReviews();
@@ -39,7 +39,7 @@ const Reviews = () => {
            tablet:mt-[50px]
            mobile: mobile:mt-[40px] pl-[15px] pr-0"
       >
-        <ReviewsList reviews={reviews} loading={loading}/>
+        <ReviewsList reviews={reviews} loading={loading} />
         <ModalReview
           isOpen={isOpen}
           onClose={onClose}

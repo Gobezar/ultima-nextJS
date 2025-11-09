@@ -19,7 +19,7 @@ export default function ReviewsList({
   const { breakPoint } = useMediaQuery();
   const isMobile = breakPoint === "mobile";
 
-  if (loading) return <div>Загрузка...</div>;
+  if (loading) return <div className="text-[#E7E7E7] text-[17px] laptop:text-[15px] mobile:text-[13px]">Загрузка...</div>;
 
   if (!reviews.length) return <div className="text-[#E7E7E7] text-[17px] laptop:text-[15px] mobile:text-[13px]">Отзывов пока нет</div>;
 
