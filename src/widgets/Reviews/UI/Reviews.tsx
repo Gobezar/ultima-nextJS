@@ -13,6 +13,7 @@ const Reviews = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchReviews = async () => {
+    alert('запрос')
     try {
       const res = await axios.get("http://localhost:4000/reviews", {
         params: { limit: 20 },
