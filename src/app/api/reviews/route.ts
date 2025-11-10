@@ -1,6 +1,9 @@
 // src/app/api/reviews/route.ts
 import { NextResponse } from "next/server";
-import knex from "../../../../backend/db/knex";
+
+import type { Knex } from 'knex'; 
+
+const knex: Knex = require("../../../../backend/db/knex");
 
 // Эта функция будет автоматически запускаться для инициализации таблицы
 async function setupTable() {
