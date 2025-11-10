@@ -8,6 +8,7 @@ import "swiper/css/free-mode";
 import "swiper/css/keyboard";
 import "swiper/css/mousewheel";
 import { useMediaQuery } from "@/shared/helpers/hooks/useMediaQuery";
+import { Spinner } from "@heroui/spinner";
 
 export default function ReviewsList({
   reviews,
@@ -19,9 +20,23 @@ export default function ReviewsList({
   const { breakPoint } = useMediaQuery();
   const isMobile = breakPoint === "mobile";
 
-  if (loading) return <div className="text-[#E7E7E7] text-[17px] laptop:text-[15px] mobile:text-[13px]">Загрузка...</div>;
+  if (loading)
+    return (
+      <div className="text-[17px] laptop:text-[15px] mobile:text-[13px] flex items-center justify-center">
+        <Spinner
+          color="warning"
+          label="Идёт загрузка..."
+          labelColor="warning"
+        />
+      </div>
+    );
 
-  if (!reviews.length) return <div className="text-[#E7E7E7] text-[17px] laptop:text-[15px] mobile:text-[13px]">Отзывов пока нет</div>;
+  if (!reviews.length)
+    return (
+      <div className="text-[#E7E7E7] text-[17px] laptop:text-[15px] mobile:text-[13px]">
+        Отзывов пока нет
+      </div>
+    );
 
   return (
     <Swiper
