@@ -52,14 +52,15 @@ const ModalReview = React.forwardRef<HTMLDivElement, ModalReviewProps>(
       try {
         const isValid = validateCaptcha(captchaInput);
         if (!isValid) {
-            throw new Error("Неверная капча");
+          throw new Error("Неверная капча");
         }
 
-        await axios.post("http://localhost:4000/reviews", {
+        await axios.post("/api/reviews", {
+          // Заменили на относительный URL
           author: formDataCache.name,
           rating: Number(formDataCache.rating),
-          text: formDataCache.comment,
-          car: formDataCache.car,
+          text: formDataCache.comment, // car: formDataCache.car, // Удалили, если этого поля нет в таблице 'reviews'
+          media: [], // Если нет медиа, отправляем пустой массив
         });
 
         fetchReviews();
@@ -67,12 +68,16 @@ const ModalReview = React.forwardRef<HTMLDivElement, ModalReviewProps>(
         onClose?.();
         NotificationService.success("Ваш отзыв успешно опубликован");
       } catch (err: any) {
-        NotificationService.error(err.message || "Ошибка");
+        // Если POST-запрос вернул ошибку 400 или 500, она будет в err.response.data.error
+        const errorMessage =
+          err.response?.data?.error ||
+          err.message ||
+          "Ошибка при добавлении отзыва";
+        NotificationService.error(errorMessage);
       } finally {
-        setCaptchaInput('')
+        setCaptchaInput("");
       }
     };
-
     return (
       <>
         {/* Основное модальное окно с формой */}
@@ -153,7 +158,7 @@ const ModalReview = React.forwardRef<HTMLDivElement, ModalReviewProps>(
         <Modal
           isOpen={isCaptchaModalOpen}
           onOpenChange={captchaModalOpenChange}
-          onClose={() => setCaptchaInput('')}
+          onClose={() => setCaptchaInput("")}
         >
           <ModalContent>
             <ModalHeader className="flex-col pt-8">

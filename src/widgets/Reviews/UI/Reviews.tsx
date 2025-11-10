@@ -12,16 +12,31 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // const fetchReviews = async () => {
+  //   alert('запрос')
+  //   try {
+  //     const res = await axios.get("http://localhost:4000/reviews", {
+  //       params: { limit: 20 },
+  //     });
+  //     alert(JSON.stringify(res.data.data || res.data, null, 2));
+  //     setReviews(res.data.data || res.data); // поддержка обеих форматов ответа
+  //   } catch (err) {
+  //     console.error("Ошибка при получении отзывов:", err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   const fetchReviews = async () => {
-    alert('запрос')
+    // alert('запрос');
     try {
-      const res = await axios.get("http://localhost:4000/reviews", {
+      const res = await axios.get("/api/reviews", {
         params: { limit: 20 },
       });
-      alert(JSON.stringify(res.data.data || res.data, null, 2));
-      setReviews(res.data.data || res.data); // поддержка обеих форматов ответа
-    } catch (err) {
+      // alert(JSON.stringify(res.data, null, 2)); // res.data.data больше не нужно
+      setReviews(res.data);
+    } catch (err: any) {
       console.error("Ошибка при получении отзывов:", err);
+      alert(`Ошибка: ${err.message}`); // Показываем ошибку
     } finally {
       setLoading(false);
     }
