@@ -23,7 +23,7 @@ const Questions = () => {
       }}
     >
       <div className="ml-auto w-fit relative z-[2] laptop:w-full">
-        <div className="flex items-center gap-[107px]  mr-[453px] laptop:mr-[0px] laptop:gap-[60px] mobile:justify-center">
+        <div className="flex items-center gap-[107px] laptop:justify-center mr-[453px] laptop:mr-[0px] laptop:gap-[60px] mobile:justify-center">
           <div className="flex flex-col">
             <div>
               <span className="font-semibold leading-[24px] text-[49px] text-[#FFFFFF] laptop:text-[39px] mobile:text-[20px]">
