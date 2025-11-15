@@ -23,7 +23,7 @@ const Questions = () => {
       }}
     >
       <div className="ml-auto w-fit relative z-[2] laptop:w-full">
-        <div className="flex items-center gap-[107px] mr-[453px] laptop:mr-[0px] laptop:gap-[60px] mobile:justify-center">
+        <div className="flex items-center gap-[107px]  mr-[453px] laptop:mr-[0px] laptop:gap-[60px] mobile:justify-center">
           <div className="flex flex-col">
             <div>
               <span className="font-semibold leading-[24px] text-[49px] text-[#FFFFFF] laptop:text-[39px] mobile:text-[20px]">
@@ -46,7 +46,7 @@ const Questions = () => {
           </div>
         </div>
 
-        <div className="mt-[85px] mr-[147px] flex laptop:mt-[60px] mobile:mr-[0px] mobile:justify-center mobile:mt-[33px]">
+        <div className="mt-[85px] mr-[147px] flex laptop:mt-[60px] laptop:justify-end mobile:mr-[0px] tablet:mr-[0px] mobile:justify-center mobile:mt-[33px]">
           <QuestionForm />
         </div>
         <div className="mt-[118px] mr-[147px] flex justify-end laptop:mt-[80px] laptop:mr-[0px] mobile:mt-[50px]">

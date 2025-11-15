@@ -43,7 +43,7 @@ const QuestionForm = () => {
             return "Имя не может быть длиннее 15 символов";
           }
         }}
-        className="w-[420px] text-white text-[17px] laptop:text-[15px] tablet:w-[260px] mobile:w-full"
+        className="w-[420px] text-white text-[17px] laptop:w-[350px] laptop:text-[15px] tablet:w-[260px] mobile:w-full"
         classNames={{
           inputWrapper: `
             before:hidden
@@ -77,7 +77,7 @@ const QuestionForm = () => {
             return "Телефон должен быть в формате +7XXXXXXXXXX";
           }
         }}
-        className="w-[420px] text-white text-[17px] laptop:text-[15px] tablet:w-[260px] mobile:w-full"
+        className="w-[420px] text-white text-[17px] laptop:w-[350px] laptop:text-[15px] tablet:w-[260px] mobile:w-full"
         classNames={{
           inputWrapper: `
             before:hidden
