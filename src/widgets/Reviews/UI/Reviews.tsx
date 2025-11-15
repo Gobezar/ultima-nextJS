@@ -6,6 +6,7 @@ import { Button } from "@/shared";
 import { useDisclosure } from "@heroui/modal";
 import ModalReview from "./AddReviewModal";
 import axios from "axios";
+import { NotificationService } from "@/shared/UI/Toast/Toast";
 
 const Reviews = () => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
@@ -36,7 +37,7 @@ const Reviews = () => {
       setReviews(res.data);
     } catch (err: any) {
       console.error("Ошибка при получении отзывов:", err);
-      alert(`Ошибка: ${err.message}`); // Показываем ошибку
+      NotificationService.error(`Ошибка: ${err.message}`); // Показываем ошибку
     } finally {
       setLoading(false);
     }
@@ -64,7 +65,7 @@ const Reviews = () => {
         />
       </div>
       <div className="w-full flex justify-end px-[50px] mt-[50px] mobile:justify-center mobile:px-[40px]">
-        <Button className="mobile:w-full" onPress={onOpenChange}>
+        <Button className="w-[308px] mobile:w-full" onPress={onOpenChange}>
           Оставить отзыв
         </Button>
       </div>

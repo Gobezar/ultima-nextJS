@@ -8,6 +8,8 @@ import Advantages from "@/widgets/Advantages/UI/Advantages";
 import Price from "@/widgets/Price/UI/Price";
 import Portfolio from "@/widgets/Portfolio/UI/Portfolio";
 import Reviews from "@/widgets/Reviews/UI/Reviews";
+import Questions from "@/widgets/Questions/UI/Questions";
+import Contacts from "@/widgets/Contacts/Contacts";
 
 export default function Home() {
   return (
@@ -39,6 +41,8 @@ export default function Home() {
       <Advantages />
       <Portfolio/>
       <Reviews/>
+      <Questions/>
+      <Contacts/>
       <Navbar />
     </>
   );
