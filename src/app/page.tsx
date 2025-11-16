@@ -10,13 +10,18 @@ import Portfolio from "@/widgets/Portfolio/UI/Portfolio";
 import Reviews from "@/widgets/Reviews/UI/Reviews";
 import Questions from "@/widgets/Questions/UI/Questions";
 import Contacts from "@/widgets/Contacts/Contacts";
+import MapMobile from "@/widgets/Contacts/MapMobile";
 
 export default function Home() {
   return (
     <>
       <div
-        className="relative min-h-screen bg-cover bg-top bg-[url('/mainBg.jpg')]
-        tablet:bg-[100%] mobile:bg-left
+        className="relative 
+         min-h-screen 
+         bg-cover 
+         bg-top 
+         bg-[url('/mainBg.jpg')]
+         tablet:bg-[100% 0%] mobile:bg-left
       "
       >
         <div className="absolute bottom-0 left-0 right-0 h-70 bg-gradient-to-b from-transparent to-[#171717]" />
@@ -39,10 +44,13 @@ export default function Home() {
       <OurServices />
       <Price />
       <Advantages />
-      <Portfolio/>
-      <Reviews/>
-      <Questions/>
-      <Contacts/>
+      <Portfolio />
+      <Reviews />
+      <Questions />
+      <Contacts />
+      <div className="desktop:hidden laptop:hidden tablet:hidden mobile:block">
+        <MapMobile />
+      </div>
       <Navbar />
     </>
   );

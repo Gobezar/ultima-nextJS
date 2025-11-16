@@ -56,7 +56,7 @@ const Questions = () => {
         </div>
       </div>
       <div
-        className="absolute bottom-[-100px] left-0 tablet:bottom-[-50px]! tablet:w-[23vw]! mobile:hidden"
+        className="absolute bottom-[-100px] left-0 z-1 tablet:bottom-[-50px]! tablet:w-[23vw]! mobile:hidden"
         style={{ width: "25vw", height: "auto" }}
       >
         <Image
