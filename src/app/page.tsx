@@ -11,6 +11,7 @@ import Reviews from "@/widgets/Reviews/UI/Reviews";
 import Questions from "@/widgets/Questions/UI/Questions";
 import Contacts from "@/widgets/Contacts/Contacts";
 import MapMobile from "@/widgets/Contacts/MapMobile";
+import Footer from "@/widgets/Footer/Footer";
 
 export default function Home() {
   return (
@@ -51,6 +52,7 @@ export default function Home() {
       <div className="desktop:hidden laptop:hidden tablet:hidden mobile:block">
         <MapMobile />
       </div>
+      <Footer/>
       <Navbar />
     </>
   );
