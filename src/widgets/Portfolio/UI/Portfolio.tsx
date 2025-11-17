@@ -525,7 +525,7 @@ const Portfolio = () => {
   }, [isMobile]);
 
   return (
-    <div className="bg-[#171717] pt-[130px] overflow-hidden">
+    <div className="bg-[#171717] pt-[130px] overflow-hidden" id='portfolioContainer'>
       <HeaderBlock text="Примеры наших работ" />
       <div
         className="flex mt-[87px] items-center justify-center w-full mx-auto h-fit

@@ -5,24 +5,6 @@ import { INavbarLink } from "../types";
 import '../UI/Navbar.css'
 
 const Link = ({ link }: { link: INavbarLink }) => {
-  const handleClick = () => {
-    switch (link.action) {
-      case "services":
-        console.log("Открываем услуги");
-        break;
-      case "price":
-        console.log("Открываем прайс-лист");
-        break;
-      case "contacts":
-        console.log("Открываем контакты");
-        break;
-      case "map":
-        console.log("Открываем карту");
-        break;
-      default:
-        console.log("Неизвестное действие");
-    }
-  };
 
   return (
     <a
@@ -30,7 +12,7 @@ const Link = ({ link }: { link: INavbarLink }) => {
         laptop:text-[15px]
         mobile:text-[13px]
       "
-      onClick={handleClick}
+      onClick={link.action}
     >
       {link.title}
     </a>

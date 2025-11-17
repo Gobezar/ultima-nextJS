@@ -21,7 +21,7 @@ export interface IPriceItem {
 
 const Price = () => {
   return (
-     <div className="bg-[#171717] pt-[130px]">
+     <div className="bg-[#171717] pt-[130px]" id="priceContainer">
       <HeaderBlock text="Прайс" />
       <div
         className="flex mt-[87px] items-center justify-center w-full mx-auto h-fit

@@ -4,7 +4,7 @@ import Map from "./Map";
 const Contacts = () => {
   return (
     <>
-      <div className="pt-[122px] pb-[127px] w-full bg-[#272727] flex relative mobile:pt-[50px] mobile:pb-[50px] mobile:bg-[#2D2D2D] mobile:flex-col">
+      <div id='contactsContainer' className="pt-[122px] pb-[127px] w-full bg-[#272727] flex relative mobile:pt-[50px] mobile:pb-[50px] mobile:bg-[#2D2D2D] mobile:flex-col">
         <div className="w-[50%] flex justify-center mobile:hidden">
           <div className="flex flex-col items-start text-left halfContainer">
             <span
