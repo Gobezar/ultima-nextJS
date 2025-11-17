@@ -54,7 +54,7 @@ const BurgerMenu = ({
     },
     {
       id: 4,
-      title: "Примеры работ",
+      title: "Примеры наших работ",
       action: () => {
         const element = document.getElementById("portfolioContainer");
         if (element) element.scrollIntoView({ behavior: "smooth" });
