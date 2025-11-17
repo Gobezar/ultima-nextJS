@@ -36,7 +36,7 @@ const Advantages = () => {
       <div
         className="flex mt-[87px] items-center justify-center gap-[160px] w-full mx-auto bg-[#2D2D2D] h-fit pt-[42px] pb-[66px]
         laptop:gap-[100px] laptop:mt-[65px]
-        tablet:gap-[70px] tablet:mt-[50px] tablet:pt-[30px] tablet:pb-[30px] tablet:px-[20px]
+        tablet:gap-[70px] tablet:mt-[50px] tablet:pt-[30px] tablet:px-[20px]
         mobile:gap-[30px] mobile:flex-col mobile:py-[40px] mobile:mt-[40px]
       "
       >
