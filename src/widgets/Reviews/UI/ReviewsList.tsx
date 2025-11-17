@@ -64,7 +64,7 @@ export default function ReviewsList({
           <CardReview
             key={item.id}
             content={item.text}
-            createdAt={item.createdAt}
+            createdAt={item.created_at}
             rating={item.rating}
             title={item.car}
             user={{
