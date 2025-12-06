@@ -32,12 +32,21 @@ export default function Home() {
         tablet:gap-[150px] 
         mobile:flex-col mobile:w-[90%] mobile:gap-[25px] mobile:bottom-[25px]"
         >
-          <Button className="w-[308px] tablet:w-[250px] mobile:w-full">
-            Позвонить нам
-          </Button>
-          <Button className="w-[308px] tablet:w-[250px] mobile:w-full">
-            Записаться онлайн
-          </Button>
+          <a href="tel:+79027172777" className="w-[308px] tablet:w-[250px] mobile:w-full">
+            <Button className="w-full">
+              Позвонить нам
+            </Button>
+          </a>
+          <a
+            href="https://t.me/ultimadetailing?text=Добрый%20день.%20Я%20хотел%20бы%20получить%20консультацию%20по%20своему%20автомобилю."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-[308px] tablet:w-[250px] mobile:w-full"
+          >
+            <Button className="w-full">
+              Записаться онлайн
+            </Button>
+          </a>
         </div>
         <MainTitleLogo />
         <DoubleDown className="absolute bottom-[25px] left-1/2 -translate-x-1/2 bounce-click-hover mobile:hidden" />
@@ -52,7 +61,7 @@ export default function Home() {
       <div className="desktop:hidden laptop:hidden tablet:hidden mobile:block">
         <MapMobile />
       </div>
-      <Footer/>
+      <Footer />
       <Navbar />
     </>
   );
