@@ -36,7 +36,9 @@ const GalleryWorks: React.FC<DetailingGalleryProps> = React.memo(
         });
 
       Promise.all(images.map(checkImage)).then((results) => {
-        const filtered = results.filter((src): src is string => Boolean(src));
+        const filtered = results.filter(
+          (src): src is string => Boolean(src)
+        );
         setValidImages(filtered);
         setIsChecking(false);
       });
@@ -76,31 +78,22 @@ const GalleryWorks: React.FC<DetailingGalleryProps> = React.memo(
             {description}
           </p>
         </div>
-        {isMobile
-          ? <MobileGalleryWorks images={validImages}/>
-          : <div className="flex flex-row gap-4 flex-1 overflow-hidden">
-          <div className="flex flex-col gap-3 w-1/4 flex-shrink-0 overflow-y-auto">
-            <div
-              className="
-                flex flex-col 
-                overflow-x-auto overflow-y-auto 
-                w-full 
-                gap-3 
-                pb-2 tablet:pb-0 tablet:pr-2
-                tablet:max-h-[70vh]
-              "
-            >
+
+        {isMobile ? (
+          <MobileGalleryWorks images={validImages} />
+        ) : (
+          <div className="flex flex-row gap-4 flex-1 overflow-hidden h-full">
+            {/* LEFT THUMBNAILS */}
+            <div className="flex flex-col gap-3 w-1/4 flex-shrink-0 overflow-y-auto">
               {validImages.map((src, index) => (
                 <button
                   key={index}
                   onClick={() => handleThumbnailClick(index)}
                   className={`
-                    flex-shrink-0 
-                    w-50 h-40
-                    tablet:w-full tablet:h-auto tablet:aspect-video
-                    rounded-lg overflow-y-auto 
-                    border-1 
-                    hover:opacity-80
+                    w-full h-[90px]
+                    rounded-lg overflow-hidden
+                    border
+                    hover:opacity-80 shrink-0
                     ${
                       activeIndex === index
                         ? "border-[#F7BB03]"
@@ -110,28 +103,24 @@ const GalleryWorks: React.FC<DetailingGalleryProps> = React.memo(
                 >
                   <img
                     src={src}
-                    alt={`Пример работы ${index + 1}`}
+                    alt={`Миниатюра ${index + 1}`}
                     className="w-full h-full object-cover"
                   />
                 </button>
               ))}
             </div>
-          </div>
 
-          <div className="tablet:w-3/4 flex-1 tablet:h-auto">
-            <div className="w-full h-full bg-gray-100 rounded-lg overflow-hidden shadow-lg relative aspect-video">
+            {/* MAIN IMAGE */}
+            <div className="flex-1 h-full flex items-center justify-center bg-[#111] rounded-lg overflow-hidden max-h-[-webkit-fill-available]">
               <img
                 key={activeIndex}
                 src={validImages[activeIndex]}
-                alt={`Полный размер, работа ${activeIndex + 1}`}
-                className="w-full h-full object-cover object-center absolute top-0 left-0"
+                alt={`Работа ${activeIndex + 1}`}
+                className="max-w-full max-h-[-webkit-fill-available] object-contain"
               />
             </div>
           </div>
-        </div>
-        }
-
-        
+        )}
       </section>
     );
   }
