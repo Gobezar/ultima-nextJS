@@ -1,51 +1,12 @@
-"use client";
 import HeaderBlock from "@/shared/UI/HeaderBlock/UI/HeaderBlock";
-import React, { useEffect, useState } from "react";
-import ReviewsList from "./ReviewsList";
-import { Button } from "@/shared";
-import { useDisclosure } from "@heroui/modal";
-import ModalReview from "./AddReviewModal";
-import axios from "axios";
-import { NotificationService } from "@/shared/UI/Toast/Toast";
+import React from "react";
+import { getCachedReviews } from "../services/reviews"; // Импорт функции из шага 1
+import ReviewsClientWrapper from "./ReviewsClientsWrapper";
 
-const Reviews = () => {
-  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
-  const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // const fetchReviews = async () => {
-  //   alert('запрос')
-  //   try {
-  //     const res = await axios.get("http://localhost:4000/reviews", {
-  //       params: { limit: 20 },
-  //     });
-  //     alert(JSON.stringify(res.data.data || res.data, null, 2));
-  //     setReviews(res.data.data || res.data); // поддержка обеих форматов ответа
-  //   } catch (err) {
-  //     console.error("Ошибка при получении отзывов:", err);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-  const fetchReviews = async () => {
-    // alert('запрос');
-    try {
-      const res = await axios.get("/api/reviews", {
-        params: { limit: 20 },
-      });
-      // alert(JSON.stringify(res.data, null, 2)); // res.data.data больше не нужно
-      setReviews(res.data);
-    } catch (err: any) {
-      console.error("Ошибка при получении отзывов:", err);
-      NotificationService.error(`Ошибка: ${err.message}`); // Показываем ошибку
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchReviews();
-  }, []);
+const Reviews = async () => {
+  // Запрос происходит на сервере.
+  // Благодаря кэшированию, БД не нагружается при каждом визите.
+  const reviews = await getCachedReviews();
 
   return (
     <div className="bg-[#171717] pt-[130px] pb-[100px] overflow-hidden">
@@ -56,18 +17,8 @@ const Reviews = () => {
            tablet:mt-[50px]
            mobile: mobile:mt-[40px] pl-[15px] pr-0"
       >
-        <ReviewsList reviews={reviews} loading={loading} />
-        <ModalReview
-          isOpen={isOpen}
-          onClose={onClose}
-          onOpenChange={onOpenChange}
-          fetchReviews={fetchReviews}
-        />
-      </div>
-      <div className="w-full flex justify-end px-[50px] mt-[50px] mobile:justify-center mobile:px-[40px]">
-        <Button className="w-[308px] mobile:w-full" onPress={onOpenChange}>
-          Оставить отзыв
-        </Button>
+        {/* Передаем данные в клиентскую обертку */}
+        <ReviewsClientWrapper initialReviews={reviews} />
       </div>
     </div>
   );

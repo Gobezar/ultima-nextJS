@@ -1,6 +1,5 @@
 "use client";
 
-import CardReview from "./CardReview";
 import { FreeMode, Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -8,30 +7,17 @@ import "swiper/css/free-mode";
 import "swiper/css/keyboard";
 import "swiper/css/mousewheel";
 import { useMediaQuery } from "@/shared/helpers/hooks/useMediaQuery";
-import { Spinner } from "@heroui/spinner";
+import CardReview from "./CardReview";
 
 export default function ReviewsList({
   reviews,
-  loading,
 }: {
   reviews: any[];
-  loading: boolean;
 }) {
   const { breakPoint } = useMediaQuery();
   const isMobile = breakPoint === "mobile";
 
-  if (loading)
-    return (
-      <div className="text-[17px] laptop:text-[15px] mobile:text-[13px] flex items-center justify-center">
-        <Spinner
-          color="warning"
-          label="Идёт загрузка..."
-          labelColor="warning"
-        />
-      </div>
-    );
-
-  if (!reviews.length)
+  if (!reviews || !reviews.length)
     return (
       <div className="text-[#E7E7E7] text-[17px] laptop:text-[15px] mobile:text-[13px]">
         Отзывов пока нет
@@ -40,20 +26,19 @@ export default function ReviewsList({
 
   return (
     <Swiper
-      //   onSwiper={(swiper) => (swiperRef.current = swiper)}
       slidesPerView="auto"
-      // slidesPerView={5}
       spaceBetween={16}
       keyboard={{ enabled: true }}
       mousewheel={!isMobile ? { sensitivity: 0.5 } : undefined}
       freeMode={{
         enabled: true,
-        momentum: true, // инерция при скролле
-        momentumRatio: 0.5, // чем меньше, тем медленнее затухает
-        momentumVelocityRatio: 0.5, // скорость инерции
-        sticky: false, // если true — будет пытаться "прилипать" к слайдам
+        momentum: true,
+        momentumRatio: 0.5,
+        momentumVelocityRatio: 0.5,
+        sticky: false,
       }}
       modules={[Mousewheel, Keyboard, FreeMode]}
+      className="w-full"
     >
       {reviews.map((item: any) => (
         <SwiperSlide

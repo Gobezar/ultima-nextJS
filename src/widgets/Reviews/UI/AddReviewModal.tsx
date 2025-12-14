@@ -21,9 +21,18 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { NotificationService } from "@/shared/UI/Toast/Toast";
+import { phoneMask, phoneRegex } from "@/shared/helpers/phoneMask";
+
+interface ReviewFormData {
+  name: string;
+  phone: string;
+  rating: string;
+  comment: string;
+  number: string;
+}
 
 interface ModalReviewProps extends Omit<ModalProps, "children"> {
-  fetchReviews: () => void;
+  fetchReviews: () => void; // Это будет вызов router.refresh()
   onClose: () => void;
 }
 
@@ -37,120 +46,169 @@ const ModalReview = React.forwardRef<HTMLDivElement, ModalReviewProps>(
     } = useDisclosure();
 
     const [captchaInput, setCaptchaInput] = useState("");
-    const [formDataCache, setFormDataCache] = useState<any>(null);
+    const [formDataCache, setFormDataCache] = useState<ReviewFormData | null>(
+      null
+    );
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [phoneNumber, setPhoneNumber] = useState<string>("");
 
     useEffect(() => {
-      if (isCaptchaModalOpen) loadCaptchaEnginge(5);
+      if (isCaptchaModalOpen) {
+        loadCaptchaEnginge(5);
+      }
     }, [isCaptchaModalOpen]);
 
-    const handleSubmit = (data: any) => {
-      setFormDataCache(data);
+    const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const formData = new FormData(e.currentTarget);
+      const data = Object.fromEntries(
+        formData.entries()
+      ) as unknown as ReviewFormData;
+
+      setFormDataCache({ ...data, phone: phoneNumber });
       openCaptcha();
     };
 
     const handleCaptchaSubmit = async () => {
+      if (!formDataCache) return;
+
+      setIsSubmitting(true);
       try {
         const isValid = validateCaptcha(captchaInput);
         if (!isValid) {
           throw new Error("Неверная капча");
         }
 
+        // Отправляем данные на API
         await axios.post("/api/reviews", {
-          // Заменили на относительный URL
           author: formDataCache.name,
           rating: Number(formDataCache.rating),
-          text: formDataCache.comment, // car: formDataCache.car, // Удалили, если этого поля нет в таблице 'reviews'
-          media: [], // Если нет медиа, отправляем пустой массив
+          text: formDataCache.comment,
+          media: [],
+          phone: formDataCache.phone,
         });
 
-        fetchReviews();
-        closeCaptcha();
-        onClose?.();
         NotificationService.success("Ваш отзыв успешно опубликован");
+
+        // 1. Закрываем капчу
+        setCaptchaInput("");
+        closeCaptcha();
+        // 2. Закрываем модалку отзыва
+        onClose();
+        // 3. Обновляем данные на странице (Server Action / Router Refresh)
+        fetchReviews();
       } catch (err: any) {
-        // Если POST-запрос вернул ошибку 400 или 500, она будет в err.response.data.error
         const errorMessage =
           err.response?.data?.error ||
           err.message ||
           "Ошибка при добавлении отзыва";
         NotificationService.error(errorMessage);
-      } finally {
+        // Перезагружаем капчу при ошибке, чтобы пользователь мог попробовать снова
+        loadCaptchaEnginge(5);
         setCaptchaInput("");
+      } finally {
+        setIsSubmitting(false);
+        setPhoneNumber("");
       }
     };
+
+    const resetForm = () => {
+      setFormDataCache(null);
+      setCaptchaInput("");
+      setPhoneNumber("");
+      setIsSubmitting(false);
+    };
+
     return (
       <>
-        {/* Основное модальное окно с формой */}
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} {...props} ref={ref}>
+        {/* Основное модальное окно */}
+        <Modal
+          isOpen={isOpen}
+          onOpenChange={(open) => {
+            onOpenChange?.(open);
+            if (!open) resetForm(); 
+          }}
+          {...props}
+          ref={ref}
+        >
           <ModalContent>
-            <ModalHeader className="flex-col pt-8">
-              <h1 className="text-large font-semibold text-[#E3E3E3]">
-                Напишите отзыв
-              </h1>
-              {/* <p className="text-[13px] text-[#E3E3E3]">
-                Оставьте отзыв об оказанной Вам услуге
-              </p> */}
-            </ModalHeader>
-            <ModalBody className="pb-8">
-              <form
-                className="flex flex-col gap-6"
-                onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-                  e.preventDefault();
-                  const formData = new FormData(e.currentTarget);
-                  const data = Object.fromEntries(formData.entries());
-                  handleSubmit(data);
-                }}
-              >
-                <Input
-                  name="name"
-                  label="Ваше имя"
-                  placeholder="Иван"
-                  startContent={<Icon icon="solar:user-bold" />}
-                  maxLength={15}
-                  isRequired
-                />
-                <Input
-                  name="phone"
-                  label="Номер телефона"
-                  placeholder="+79994567080"
-                  startContent={<Icon icon="solar:letter-bold" />}
-                  maxLength={15}
-                />
-                <Divider />
-                <RatingRadioGroup
-                  name="rating"
-                  hideStarsText
-                  className="flex-col-reverse items-start"
-                  color="warning"
-                  label={
-                    <span className="text-[13px] text-[#E3E3E3]">
-                      Укажите оценку выполненной работы
-                    </span>
-                  }
-                  isRequired
-                />
-                {/* <Input
-                  name="car"
-                  label="Марка автомобиля"
-                  placeholder="Audi"
-                  startContent={<Icon icon="solar:pen-bold" />}
-                  maxLength={15}
-                /> */}
-                <Textarea
-                  name="comment"
-                  disableAutosize
-                  classNames={{
-                    input: "h-32 resize-y transition-none!",
-                  }}
-                  label="Комментарий к отзыву (макс. - 150 символов)"
-                  placeholder="..."
-                  maxLength={150}
-                  minLength={5}
-                  isRequired
-                />
-                <Button type="submit">Отправить</Button>
-              </form>
-            </ModalBody>
+            {(onCloseModal) => (
+              <>
+                <ModalHeader className="flex-col pt-8">
+                  <h1 className="text-large font-semibold text-[#E3E3E3]">
+                    Напишите отзыв
+                  </h1>
+                </ModalHeader>
+                <ModalBody className="pb-8">
+                  <form
+                    className="flex flex-col gap-6"
+                    onSubmit={handleFormSubmit}
+                  >
+                    <Input
+                      name="name"
+                      label="Ваше имя"
+                      placeholder="Иван"
+                      // startContent={<Icon icon="solar:user-bold" />}
+                      maxLength={15}
+                      isRequired
+                      classNames={{ inputWrapper: "bg-[#27272a]" }} // Пример стилизации под темную тему
+                    />
+                    <Input
+                      value={phoneNumber}
+                      onChange={(e) => phoneMask(e, setPhoneNumber)}
+                      label="Введите ваш номер телефона:"
+                      placeholder="+7 (999) 000-00-00"
+                      variant="flat"
+                      isRequired
+                      validate={(value) => {
+                        const trimmed = value.trim();
+                        if (!trimmed) return "Поле обязательно для заполнения";
+                        if (!phoneRegex.test(trimmed)) {
+                          return "Введите корректный номер";
+                        }
+                      }}
+                      // startContent={<Icon icon="solar:letter-bold" />}
+                      maxLength={18}
+                      disableAnimation
+                      style={{ color: "white" }}
+                      minLength={18}
+                      type="tel"
+                    />
+                    <Divider className="bg-[#3f3f46]" />
+
+                    <RatingRadioGroup
+                      name="rating"
+                      hideStarsText
+                      className="flex-col-reverse items-start"
+                      color="warning"
+                      label={
+                        <span className="text-[13px] text-[#E3E3E3]">
+                          Укажите оценку выполненной работы
+                        </span>
+                      }
+                      isRequired
+                    />
+
+                    <Textarea
+                      name="comment"
+                      disableAutosize
+                      classNames={{
+                        input: "h-32 resize-y transition-none text-[#E3E3E3]",
+                        inputWrapper: "bg-[#27272a]",
+                      }}
+                      label="Комментарий к отзыву (макс. 150 символов)"
+                      placeholder="..."
+                      maxLength={150}
+                      minLength={5}
+                      isRequired
+                    />
+                    <Button type="submit" isLoading={false}>
+                      Отправить
+                    </Button>
+                  </form>
+                </ModalBody>
+              </>
+            )}
           </ModalContent>
         </Modal>
 
@@ -159,6 +217,7 @@ const ModalReview = React.forwardRef<HTMLDivElement, ModalReviewProps>(
           isOpen={isCaptchaModalOpen}
           onOpenChange={captchaModalOpenChange}
           onClose={() => setCaptchaInput("")}
+          isDismissable={!isSubmitting} // Нельзя закрыть кликом вне, пока идет отправка
         >
           <ModalContent>
             <ModalHeader className="flex-col pt-8">
@@ -167,14 +226,19 @@ const ModalReview = React.forwardRef<HTMLDivElement, ModalReviewProps>(
               </h1>
             </ModalHeader>
             <ModalBody className="pb-8 flex flex-col gap-4 items-center">
-              <LoadCanvasTemplate reloadText="↻" />
+              <div className="bg-white p-2 rounded">
+                <LoadCanvasTemplate reloadText="↻" />
+              </div>
               <Input
                 label="Введите символы с картинки"
                 value={captchaInput}
                 onChange={(e) => setCaptchaInput(e.target.value)}
+                classNames={{ inputWrapper: "bg-[#27272a]" }}
               />
               <div className="flex gap-3 mt-3">
-                <Button onPress={handleCaptchaSubmit}>Подтвердить</Button>
+                <Button onPress={handleCaptchaSubmit} isLoading={isSubmitting}>
+                  Подтвердить
+                </Button>
               </div>
             </ModalBody>
           </ModalContent>

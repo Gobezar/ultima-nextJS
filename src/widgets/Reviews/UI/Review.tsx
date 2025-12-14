@@ -55,7 +55,7 @@ const Review = React.forwardRef<HTMLDivElement, ReviewProps>(
       </div>
       <div className="mt-4 w-full">
         <p className="text-default-900 font-medium">{title}</p>
-        <p className="text-default-500 mt-2 text-[17px] laptop:text-[15px] mobile:text-[13px]">{content || children}</p>
+        <p className="text-default-500 mt-2 text-[17px] laptop:text-[15px] mobile:text-[13px] line-clamp-12 break-words">{content || children}</p>
       </div>
     </div>
   ),

@@ -10,6 +10,7 @@ interface Props {
   onPress?: any;
   type?: "button" | "submit" | "reset" | undefined;
   form?: string;
+  isLoading?: boolean
 }
 
 export const StyledButton = ({
@@ -19,6 +20,7 @@ export const StyledButton = ({
   onPress,
   type,
   form,
+  isLoading
 }: Props) => {
   return (
     <Button
@@ -32,6 +34,7 @@ export const StyledButton = ({
       onPress={onPress}
       type={type}
       form={form}
+      isLoading={isLoading}
     >
       {children}
     </Button>
