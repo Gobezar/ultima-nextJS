@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import logo from "../../../../public/ultimaLogo.png";
+import logo from "../../../../public/ultimaLogoNew.png";
 import NavbarLinks from "../lib/NavbarLinks";
 import { useMediaQuery } from "@/shared/helpers/hooks/useMediaQuery";
 import BurgerMenu from "../../BurgerMenu/UI/BurgerMenu";
@@ -20,7 +20,7 @@ const Navbar = () => {
         <Image
           src={logo}
           alt="logo"
-          className="cursor-pointer pointer-events-none select-none w-[120px] h-auto"
+          className="cursor-pointer pointer-events-none select-none w-[200px] h-auto"
         />
         <BurgerMenu open={open} setOpen={setOpen} />
       </div>
@@ -37,7 +37,7 @@ const Navbar = () => {
       <Image
         src={logo}
         alt="logo"
-        className="cursor-pointer pointer-events-none select-none"
+        className="cursor-pointer pointer-events-none select-none w-[350px] h-auto laptop:w-[250px]"
       />
       <NavbarLinks />
     </div>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import logo from "../../../public/ultimaLogo.png";
+import logo from "../../../public/ultimaLogoNew.png";
 import logoInstagram from "../../../public/Instagram.png";
 import logoTelegram from "../../../public/Telegram.png";
 
@@ -11,7 +11,7 @@ const Footer = () => {
         <Image
           src={logo}
           alt="logo"
-          className="cursor-pointer pointer-events-none select-none w-[226px] h-auto"
+          className="cursor-pointer pointer-events-none select-none w-[350px] h-auto laptop:w-[250px] tablet:w-[200px]"
         />
 
         <div className="flex flex-col mobile:flex-row mobile:items-center mobile:gap-[20px] text-[17px] laptop:text-[15px] mobile:text-[13px] text-[#D1933C] mobile:text-center">
