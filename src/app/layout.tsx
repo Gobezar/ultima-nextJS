@@ -6,8 +6,8 @@ import { Providers } from "./providers";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Ультима | Детейлинг Саратов",
-  description: "Ультима | Детейлинг Саратов",
+  title: "Детейлинг центр в Саратове «Ультима Детейлинг»",
+  description: "Премиум детейлинг-центр «Ультима Детейлинг» в Саратове предлагает профессиональный комплекс услуг по уходу за вашим автомобилем. ✅Оклейка кузова пленкой. ✅Тонировка. ✅Полировка. ✅Заставляем блестеть Ваш автомобиль!",
 };
 
 export default function RootLayout({

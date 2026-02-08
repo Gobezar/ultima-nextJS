@@ -12,6 +12,7 @@ import Questions from "@/widgets/Questions/UI/Questions";
 import Contacts from "@/widgets/Contacts/Contacts";
 import MapMobile from "@/widgets/Contacts/MapMobile";
 import Footer from "@/widgets/Footer/Footer";
+import Faq from "@/widgets/FAQ/UI/Faq";
 
 export default function Home() {
   return (
@@ -57,6 +58,7 @@ export default function Home() {
       <Portfolio />
       <Reviews />
       <Questions />
+      <Faq/>
       <Contacts />
       <div className="desktop:hidden laptop:hidden tablet:hidden mobile:block">
         <MapMobile />
