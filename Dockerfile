@@ -11,15 +11,17 @@ RUN npm run build
 
 FROM node:20-alpine AS runner
 WORKDIR /app
-ENV NODE_ENV production
 
-# Копируем статику и публичные файлы
+ENV NODE_ENV production
+# КРИТИЧЕСКИ ВАЖНО ДЛЯ DOCKER:
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0" 
+
 COPY --from=builder /app/public ./public
-# В режиме standalone это критически важные пути:
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
 EXPOSE 3000
 
-# Если Next.js собран в standalone, server.js лежит в корне рабочей директории
+# Запускаем через node
 CMD ["node", "server.js"]
