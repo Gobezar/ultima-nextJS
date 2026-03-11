@@ -27,8 +27,7 @@ const nextConfig: NextConfig = {
         permanent: true, // 301
       },
     ];
-  },
-  output: 'standalone',
+  }
 };
 
 export default nextConfig;
