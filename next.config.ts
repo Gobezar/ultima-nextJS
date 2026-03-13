@@ -17,14 +17,26 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.ultima-detailing.ru',
+          },
+        ],
+        // Перенаправляем на основной домен с сохранением пути
+        destination: 'https://ultima-detailing.ru/:path*',
+        permanent: true,
+      },
+      {
         source: '/index.php',
         destination: '/',
-        permanent: true, // 301
+        permanent: true,
       },
       {
         source: '/index.html',
         destination: '/',
-        permanent: true, // 301
+        permanent: true,
       },
     ];
   },
