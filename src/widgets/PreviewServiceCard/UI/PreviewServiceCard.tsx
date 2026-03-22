@@ -1,3 +1,4 @@
+//@ts-ignore
 import { CardHeader, CardBody, Card, Image } from "@heroui/react";
 import React, { ReactNode } from "react";
 
