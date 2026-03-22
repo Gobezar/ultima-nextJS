@@ -13,6 +13,7 @@ import Contacts from "@/widgets/Contacts/Contacts";
 import MapMobile from "@/widgets/Contacts/MapMobile";
 import Footer from "@/widgets/Footer/Footer";
 import Faq from "@/widgets/FAQ/UI/Faq";
+import ScrollToHash from "@/shared/UI/ScrollToHash";
 
 export default function Home() {
   return (
@@ -65,6 +66,7 @@ export default function Home() {
       </div>
       <Footer />
       <Navbar />
+      <ScrollToHash/>
     </>
   );
 }

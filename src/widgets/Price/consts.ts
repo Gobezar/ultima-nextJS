@@ -1,4 +1,6 @@
-export const priceList = [
+import { IPriceItem } from "./UI/Price";
+
+export const priceList: IPriceItem[] = [
   {
     id: 'carWash',
     title: "Детейлинг-мойка",

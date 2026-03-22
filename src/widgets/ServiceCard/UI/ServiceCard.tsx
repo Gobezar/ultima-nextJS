@@ -44,12 +44,21 @@ const ServiceCard = ({ item }: { item: IServiceCard }) => {
       />
       <div className="flex flex-col pl-[21px] pr-[52px] mobile:h-full mobile:backdrop-blur-[6px]">
         <div>
-          <h4 className="font-semibold text-[20px] leading-[24px] text-[#FFFFFF] mt-[37px] mb-[10px] 
+          {/* <Link href={item.link}><h4 className="font-semibold text-[20px] leading-[24px] text-[#FFFFFF] mt-[37px] mb-[10px] 
             laptop:text-[18px] laptop:mt-[25px]
             mobile:text-[15px] mobile:mt-[21px]
             ">
             {item.title}
           </h4>
+          </Link> */}
+          {/* Временно заменяем для отключения ссылок */}
+          <div><h4 className="font-semibold text-[20px] leading-[24px] text-[#FFFFFF] mt-[37px] mb-[10px] 
+            laptop:text-[18px] laptop:mt-[25px]
+            mobile:text-[15px] mobile:mt-[21px]
+            ">
+            {item.title}
+          </h4>
+          </div>
         </div>
         <div className="w-[87px] h-[2px] bg-[#D1933C] mb-[24px] laptop:mb-[18px] mobile:mb-[10px]"></div>
         <div>

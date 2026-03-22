@@ -5,23 +5,27 @@ import logo from "../../../../public/ultimaLogoNew.png";
 import NavbarLinks from "../lib/NavbarLinks";
 import { useMediaQuery } from "@/shared/helpers/hooks/useMediaQuery";
 import BurgerMenu from "../../BurgerMenu/UI/BurgerMenu";
+import Link from "next/link";
 
 const Navbar = () => {
   const { breakPoint } = useMediaQuery();
   const isTablet = breakPoint === "tablet";
   const isMobile = breakPoint === "mobile";
-  const [open, setOpen] = useState(false); 
+  const [open, setOpen] = useState(false);
   if (isTablet || isMobile) {
     return (
       <div
         className={`fixed top-0 left-0 h-[70px] w-full flex items-center justify-between px-6 
  mobile:flex tablet:flex z-50 ${!open ? "backdrop-blur-[200px]" : ""}`}
       >
-        <Image
-          src={logo}
-          alt="logo"
-          className="cursor-pointer pointer-events-none select-none w-[200px] h-auto"
-        />
+        <Link href={"/"}>
+          <Image
+            src={logo}
+            alt="logo"
+            className="cursor-pointer pointer-events-none select-none w-[200px] h-auto"
+          />
+        </Link>
+
         <BurgerMenu open={open} setOpen={setOpen} />
       </div>
     );
@@ -34,11 +38,14 @@ const Navbar = () => {
           !open ? "backdrop-blur-[200px]" : ""
         }`}
     >
-      <Image
-        src={logo}
-        alt="logo"
-        className="cursor-pointer pointer-events-none select-none w-[350px] h-auto laptop:w-[250px]"
-      />
+      <Link href={"/"}>
+        <Image
+          src={logo}
+          alt="logo"
+          className="cursor-pointer pointer-events-none select-none w-[350px] h-auto laptop:w-[250px]"
+        />
+      </Link>
+
       <NavbarLinks />
     </div>
   );

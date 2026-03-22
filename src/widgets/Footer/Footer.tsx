@@ -15,7 +15,7 @@ const Footer = () => {
         />
 
         <div className="flex flex-col mobile:flex-row mobile:items-center mobile:gap-[20px] text-[17px] laptop:text-[15px] mobile:text-[13px] text-[#D1933C] mobile:text-center">
-          <span>© Все права защищены — 2025</span>
+          <span>© Все права защищены — {new Date().getFullYear()}</span>
           <span>ИНН 644926511121</span>
         </div>
 

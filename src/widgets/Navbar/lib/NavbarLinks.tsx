@@ -1,19 +1,21 @@
 import React from "react";
 import Link from "./Link";
 import { INavbarLink } from "../types";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const NavbarLinks = () => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const linksList: INavbarLink[] = [
-    // { id: 1, title: "Главная", action: () => router.push("/") },
+    ...(pathname !== "/"
+      ? [{ id: 1, title: "Главная", action: () => router.push("/") }]
+      : []),
     {
       id: 2,
       title: "Наши услуги",
       action: () => {
-        const element = document.getElementById("ourServicesContainer");
-        if (element) element.scrollIntoView({ behavior: "smooth" });
+        router.push("/#ourServicesContainer");
       },
     },
     {

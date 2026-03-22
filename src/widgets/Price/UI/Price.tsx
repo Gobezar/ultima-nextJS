@@ -1,5 +1,4 @@
 'use client'
-
 import HeaderBlock from '@/shared/UI/HeaderBlock/UI/HeaderBlock'
 import React from 'react'
 import { FreeMode, Keyboard, Mousewheel } from 'swiper/modules'
@@ -30,7 +29,7 @@ const Price = () => {
         mobile:flex-col mobile:mt-[40px] px-[15px] overflow-x-auto
       "
       >
-        <PriceTable/>
+        <PriceTable priceList={priceList}/>
         {/* {возможно данная реализация понадобится для какого-то другого блока (вместе с PriceCard)} */}
         {/* <Swiper
             //   onSwiper={(swiper) => (swiperRef.current = swiper)}

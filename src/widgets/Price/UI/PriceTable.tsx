@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import {
   Table,
@@ -7,9 +9,9 @@ import {
   TableRow,
   TableCell,
 } from "@heroui/table";
-import { priceList } from "../consts";
+import { IPriceItem } from "./Price";
 
-const PriceTable = () => {
+const PriceTable = ({priceList}: {priceList: IPriceItem[]}) => {
   return (
     <Table
       removeWrapper
