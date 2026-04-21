@@ -16,7 +16,7 @@ const HeaderBlock = ({ text, level = 1 }: HeaderBlockProps) => {
   return (
     <div className="flex flex-col items-center font-montseratt">
       <div
-        className={`mb-[23px] font-semibold text-[#FFFFFFDB] text-center ${currentSizeClass}`}
+        className={`mb-[23px] font-semibold text-[#FFFFFFDB] text-center  mobile:px-[20px] ${currentSizeClass}`}
       >
         <h2>
           {text.toUpperCase()}

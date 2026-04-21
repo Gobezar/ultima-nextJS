@@ -46,7 +46,7 @@ const BurgerMenu = ({
     },
     {
       id: 3,
-      title: "Прайс-лист",
+      title: "Стоимость услуг",
       action: () => {
         const element = document.getElementById("priceContainer");
         if (element) element.scrollIntoView({ behavior: "smooth" });

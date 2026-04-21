@@ -14,6 +14,7 @@ import MapMobile from "@/widgets/Contacts/MapMobile";
 import Footer from "@/widgets/Footer/Footer";
 import Faq from "@/widgets/FAQ/UI/Faq";
 import ScrollToHash from "@/shared/UI/ScrollToHash";
+import MainDescription from "@/widgets/MainDescription/UI/MainDescription";
 
 export default function Home() {
   return (
@@ -53,6 +54,7 @@ export default function Home() {
         <MainTitleLogo />
         <DoubleDown className="absolute bottom-[25px] left-1/2 -translate-x-1/2 bounce-click-hover mobile:hidden" />
       </div>
+      <MainDescription/>
       <OurServices />
       <Price />
       <Advantages />

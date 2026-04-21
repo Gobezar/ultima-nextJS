@@ -1,45 +1,46 @@
-import classNames from "classnames";
 import React from "react";
+import { Icon } from "@iconify/react";
 
 interface IAdvantageItem {
   id: number;
   title: string;
   description: string;
-  icon: React.ReactElement;
+  icon: string;
 }
 
 const AdvantageItem = ({ item }: { item: IAdvantageItem }) => {
   return (
-    <div className="relative flex flex-col items-center gap-[25px] justify-between max-w-[350px] 
-        laptop:max-w-[310px]
-        tablet:h-[310px]
-        mobile:max-w-[250px] mobile:h-fit">
-      <div className="absolute bottom-[80px] inset-0 flex justify-center items-center pointer-events-none z-0">
-        <span className="font-medium text-[250px] leading-[24px] text-[#55555540] select-none
-            laptop:text-[200px]
-            tablet:text-[160px]
-            mobile:text-[110px]">{`0${item.id}`}</span>
+    <div className="relative flex flex-col items-center gap-[20px] max-w-[450px] mx-auto">
+      {/* Фоновая цифра */}
+      <div className="absolute top-[-20px] inset-0 flex justify-center items-center pointer-events-none z-0">
+        <span className="font-medium text-[200px] leading-none text-[#55555540] select-none
+            laptop:text-[150px]
+            tablet:text-[120px]
+            mobile:text-[100px]">
+          {item.id < 10 ? `0${item.id}` : item.id}
+        </span>
       </div>
-      <div className="z-1 
-        laptop:[&>svg]:w-[100px] laptop:[&>svg]:h-[100px]
-        tablet:[&>svg]:w-[80px] tablet:[&>svg]:h-[80px]
-        mobile:[&>svg]:w-[56px] mobile:[&>svg]:h-[56px]">
-        {item.icon}
-        </div>
-      <div className="text-center font-semibold text-[25px] leading-[24px] text-[#FFFFFF] z-1 
-            laptop:text-[23px]
-            tablet:text-[21px]
-            mobile:text-[17px]
-            ">
-        <span>{item.title}</span>
+
+      {/* Иконка */}
+      <div className="z-10 text-[#FFFFFF]">
+        <Icon 
+          icon={item.icon} 
+          color="#F7BB03"
+          className="w-[80px] h-[80px] laptop:w-[70px] laptop:h-[70px] tablet:w-[60px] tablet:h-[60px] mobile:w-[50px] mobile:h-[50px]" 
+        />
       </div>
-      <div
-        className={classNames(
-          "text-center font-normal text-[17px] leading-[24px] text-[#FFFFFF] z-1 laptop:text-[15px] mobile:text-[13px] ",
-          (item.id === 1 || item.id === 3) && "mt-[24px] mobile:mt-[0px]"
-        )}
-      >
-        <span>{item.description}</span>
+
+      {/* Текстовый контент */}
+      <div className="text-center font-semibold text-[23px] leading-tight text-[#FFFFFF] z-10 
+            laptop:text-[21px]
+            mobile:text-[17px]">
+        {item.title}
+      </div>
+
+      <div className="text-center font-normal text-[17px] leading-[1.4] text-[#CCCCCC] z-10 
+            laptop:text-[15px] 
+            mobile:text-[13px]">
+        {item.description}
       </div>
     </div>
   );

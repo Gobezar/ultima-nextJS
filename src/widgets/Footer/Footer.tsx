@@ -20,10 +20,10 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col mobile:flex-row mobile:items-center mobile:gap-[20px] text-[17px] laptop:text-[15px] mobile:text-[13px] text-[#FFFFFF] mobile:text-center">
-          <span>Дизайн и верстка сайта</span>
-          <span>
+          <span>Дизайн и разработка сайта</span>
+          <a href="https://t.me/yes_kiselev" target="_blank" rel="noopener noreferrer">
             <span className="text-[#D1933C]">VK ST</span>UDIO
-          </span>
+          </a>
         </div>
 
         <div className="flex gap-[45px] items-center">
