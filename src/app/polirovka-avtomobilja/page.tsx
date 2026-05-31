@@ -99,7 +99,7 @@ const DescriptionItem = ({
 
 const page = () => {
   return (
-    <div className="bg-[#171717] min-h-screen pt-[150px] px-[106px] tablet:px-[24px] tablet:pt-[130px]">
+    <div className="bg-[#171717] min-h-screen pt-[150px] px-[106px] tablet:px-[24px] tablet:pt-[130px] mobile:pt-[90px]">
       <Navbar />
 
       <PageHeader text="Полировка автомобиля" />

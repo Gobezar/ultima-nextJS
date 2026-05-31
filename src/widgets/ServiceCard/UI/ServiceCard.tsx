@@ -22,7 +22,7 @@ const images: Record<number, StaticImageData> = {
 
 const ServiceCard = ({ item }: { item: IServiceCard }) => {
   return (
-    // <Link href={`/services/${item.link}`}>
+    // <Link href={`/${item.link}`}>
     <div
       className={`wrapper-${item.id} w-[424px] h-[634px] flex flex-col bg-[#2524247A] backdrop-blur-[10px] shadow-[0px_4px_100px_0px_#00000040] border-[#000000C4] relative
         laptop:w-[350px] laptop:h-[500px]
