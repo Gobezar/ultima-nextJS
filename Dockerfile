@@ -23,5 +23,9 @@ COPY --from=builder /app/.next/static ./.next/static
 
 EXPOSE 3000
 
-# Запускаем через node
+# Timeweb берёт HEALTHCHECK из Dockerfile и игнорирует путь из панели.
+# node:20-alpine без curl; localhost на Alpine резолвится в ::1, а Next слушает 0.0.0.0.
+HEALTHCHECK --interval=10s --timeout=5s --start-period=20s --retries=5 \
+  CMD ["node", "-e", "fetch('http://127.0.0.1:3000/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+
 CMD ["node", "server.js"]
