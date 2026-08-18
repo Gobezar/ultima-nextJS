@@ -1,14 +1,25 @@
+import dns from 'node:dns';
 import { Pool } from 'pg';
 
-// Используем глобальную переменную для сохранения подключения в dev-режиме
+// На Windows Node часто идёт в Neon по IPv6 и получает EACCES
+dns.setDefaultResultOrder('ipv4first');
+
+const connectionString = process.env.POSTGRES_URL;
+
+if (!connectionString) {
+  throw new Error(
+    'POSTGRES_URL is not set. Add it to .env.local (Neon Console → Connect).'
+  );
+}
+
 const globalForPg = global as unknown as { pgPool: Pool };
 
 export const pool =
   globalForPg.pgPool ||
   new Pool({
-    connectionString: process.env.POSTGRES_URL, 
+    connectionString,
     ssl: {
-      rejectUnauthorized: false, // Для Neon часто нужно это, или true, если есть сертификаты
+      rejectUnauthorized: false,
     },
   });
 

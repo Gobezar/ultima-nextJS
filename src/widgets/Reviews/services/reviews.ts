@@ -3,8 +3,9 @@ import { pool } from "@/shared/lib/db";
 
 // Функция прямого запроса к БД (без кэша)
 const fetchReviewsFromDb = async () => {
-  const client = await pool.connect();
+  let client;
   try {
+    client = await pool.connect();
     // ВАЖНО: Убедись, что имена полей совпадают с твоей БД (id, author, rating, text, created_at)
     const result = await client.query(
       'SELECT * FROM reviews ORDER BY created_at DESC LIMIT 20'
@@ -14,7 +15,7 @@ const fetchReviewsFromDb = async () => {
     console.error("Database Error:", error);
     return []; // Возвращаем пустой массив в случае ошибки, чтобы сайт не упал
   } finally {
-    client.release(); // Обязательно освобождаем клиент
+    client?.release();
   }
 };
 
